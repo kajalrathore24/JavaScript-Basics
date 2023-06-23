@@ -1,0 +1,43 @@
+Data types:
+String, Number, Bigint, Boolean, Undefined, Null
+7. Symbol
+8. Object
+difference between let, var and const
+
+undefined and null  not defined-difference
+undefined-a variable has not been assigned a value.
+null-non-existent reference,it is a value itself 
+not defined-refrence doesn't exist
+undefined memeory allocation but in null there is no memory allocation
+
+Difference between == and ===
+console.log('5'==5) //true
+console.log('5'===5) //false
+
+
+
+
+Execution context:
+run line by line and maintain a call stack-javascript
+
+all the variables in inside first it allocate memory
+object also behaves as a same
+
+phases-
+1.Memory allocation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,14 @@
+#outer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+    width: 100vw;
+   
+}
+#inner{
+
+    background-color: rgb(213, 38, 55); 
+    height: 50px; 
+    width: 50px;
+}

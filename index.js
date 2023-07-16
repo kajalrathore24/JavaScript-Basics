@@ -235,18 +235,321 @@ let arr2=[1,2,3,4,5,6]
 // }
 // console.log(userName)
 
-let userName='gla'   
-add()   
-function add(){
-    let name1='hello'       //whole body
-    console.log(name1);
-}
-console.log(userName)
+// let userName='gla'   
+// add()   
+// function add(){
+//     let name1='hello'       //whole body
+//     console.log(name1);
+// }
+// console.log(userName)
 
 // in the above code it creates two execution context first it creates the global execution context as it doesn't get the functon value and there is another execution context for function -child of global which is another global execution context and worked same as previous that i memory execution and code execution
 // if the work of execution context is finished then it destroyed the previous context and works on another execution context
 
 
+// difference between var,let and const
+// Hoisting:let and const hoisting is in different zone(it doesn't work until we assign the value) ,var is having different zone(hoisting-different variable)
+// let and const are having block scope
+// {
+//     var a=5
+// }
+// console.log(a);
+
+// Higher order functions-those function which contain their arguments another function and return the another function
+// function a(fn){
+//     console.log('a');
+//     fn();
+// }                          //normal function
+
+// function a(fn){
+//     console.log('inside a');
+//     fn()
+// }
+// a(function b(){
+//     console.log('inside b');
+// })
+
+// function b(){
+//     console.log('b');
+// }
+// a(b)       //a-higher order function 
+
+// function a(){
+//     console.log('a');
+//     function b(){
+//         console.log('b');
+//     }
+//     return b;
+// }
+// // let b=a()
+// // // console.log(b);
+// // b()             //higher order function
+// a()()
+
+// let arr=[1,2,3,4,'hello','gla',true,false]
+// function getString(){
+//     var res=[]
+//     for(let item of arr){
+//         if(typeof item==='string'){
+//             res.push(item)
+//         }
+//     }
+//     return res;
+// }
+
+// let str=getString(arr)
+// console.log(str);
+// function getNumber(){
+//     var res=[]
+//     for(let i of arr){
+//         if(typeof i==='number'){
+//             res.push(i)
+//         }
+//     }
+//     return res
+// }
+// let num=getNumber(arr)
+// console.log(num)
+
+// function getBoolean(){
+//     var res=[]
+//     for(let i of arr){
+//         if(typeof i==='boolean'){
+//             res.push(i)
+//         }
+//     }
+//     return res
+// }
+// let bool=getBoolean(arr)
+// console.log(bool)
 
 
 
+
+// function getString(item){
+//     return typeof item==='string'
+// }
+// function getNumber(item){
+//     return typeof item==='number'
+// }
+// function getBoolean(item){
+//     return typeof item==='boolean'
+// }
+
+// function get(arr,fun1){
+//     var res=[]
+//     for(let item of arr){
+//         if(fun1(item))
+//             res.push(item)
+//     }
+//     return res
+// }
+// var arr=[1,2,3,4,'hello','gla',true,false]
+// console.log(get(arr,getString));
+// console.log(get(arr,getNumber));
+// console.log(get(arr,getBoolean));
+
+
+// function outer(){
+//     let user = 'gla'
+//     function inner(){
+//         console.log(user)
+//     }
+//     return inner
+// }
+
+// let inner = outer()
+// inner();
+// Closure--feature of js inner function can access al the variable of its outer function
+// inner function can access the values of outer function -if it deleted from execution context as it stores it in memory\
+
+
+// Asynchronous programming----------------------------------------------------------------------------------------------------------------------
+// js is a synchronous language bcz it is a single threaded language
+
+// setTimeout,setInterval,console are not the part of js they are part of web api which is a part of web browser
+// js doesn.t wait for anything -it skips particular code that takes time to run 
+
+// event loop-it is a loop between stacka nd queue (it checks call stack is empty or not if it is empty then it takes the value and push it into the event loop)
+// stack,queue,event loop
+// console.log('1')
+// setTimeout(()=>{
+//     console.log('2')
+// },4000)
+
+// console.log('3')
+// console.log('4')
+// console.log('5')
+
+// console.log('1')
+// setTimeout(()=>{
+//     console.log('2')
+// },1000)
+// setTimeout(()=>{
+//     console.log('6')
+// },1000)
+
+// console.log('3')
+// console.log('4')
+// console.log('5')
+
+
+
+
+
+
+
+// Promises----------------------------------------------------------------------------------------------------------
+// 1st condition:pending state,(resolved state)fulfilled,(reject state)rejected
+//advance version of promise ,promise advance version async await
+// promise created using new keyword
+// let promise=new Promise((resolve,reject)=>{                    //object variable
+//     // resolve('hello')
+//     reject('gla')
+// })      
+// // console.log(promise) 
+// // .then(remaining work)   --only for resolve
+// // .catch--work for reject   
+// promise.then((data)=>{
+//     console.log(data)
+// }).catch((err)=>{
+//     console.log(err)
+// })    
+
+
+
+// let promise1=new Promise((resolve,reject)=>{
+//     var isBool=false
+//     if(isBool){
+//         resolve('resolve')
+//     }else{
+//         reject('reject')
+//     }
+// })
+// promise1.then((data)=>{
+//     console.log(data)
+// }).catch((err)=>{
+//     console.log(err)
+// })    
+
+
+
+
+
+
+
+
+
+
+// setTimeout and callStack hell
+// function step1(step2) {
+//     setTimeout(function() {
+//       console.log('Selecting image');
+//       // return 'image';
+//       cb('image');
+//     }, 4000);
+//   }
+  
+//   function step2 (image, cb) {
+//     setTimeout(function() {
+//       console.log(`Applying filters to ${image}`);
+//       // return 'filtered image'
+//       cb('filtered image');
+//     }, 2000);
+//   }
+  
+//   function step3(filteredImage, cb) {
+//     setTimeout(function() {
+//       console.log(`Adding caption to ${filteredImage}`);
+//       // return 'filtered image with caption';
+//       cb('filtered image with caption');
+//     }, 3000);
+//   }
+  
+//   function step4(final) {
+//     setTimeout(function() {
+//       console.log(`${final} uploaded`);
+//     }, 2000);
+//   }
+  
+//   step1(function(image) {
+//     step2(image, function(filteredImage) {
+//       step3(filteredImage, function (finalImage) {
+//         step4(finalImage);
+//       });
+//     });
+//   });
+
+
+
+
+
+// DOM---------------------------------------------------------------------------------
+// Document object model
+// console.log(document);
+
+// selector-
+// let ele=document.getElementById('id1');
+// let ele=document.getElementsByClassName('class');
+// let ele=document.getElementsByTagName('h1');
+// let ele=document.querySelector(".class1");
+// let ele=document.querySelectorAll(".class1");
+// let ele=document.querySelectorAll("h1");      //gives error bcz it denotes array we need to provide the indexes using for loop
+// // ele.style.color="red"        //error
+// for(let item of ele){
+//   item.style.color="red";
+// }
+// console.log(ele)
+
+// let ele=document.querySelector("h1");
+// ele.innerText="byee"
+// console.log(ele)
+
+
+// Event----------------------------------------------------------------------------------------
+// const fun1=()=>{
+//     console.log("hello")
+// }
+// let ele=document.querySelector("button");
+// ele.onclick=function(){
+//     console.log("hello")
+// }
+
+// let ele=document.querySelector("div");
+// let h1=document.createElement("h1");
+// let h2=document.createElement("h1")
+// // h1.innerText("byeee")
+// ele.append(h1,h2)        //for multiple value
+// ele.appendChild(h1)           //for single child value
+// console.log(ele)
+
+// let inputE=document.querySelector('input')
+// let h1=document.querySelector('h1')
+// inputE.addEventListener('input',function(event){
+//     console.log(event.target.value)
+//     h1.innerText=event.target.value;
+// }) 
+//two things input name and what need to be done next
+
+
+// let formE1=document.querySelector('form');
+// formE1.addEventListener('submit',(event)=>{
+//     event.preventDefault();
+//     console.log('done');
+// })
+
+
+// Note Taking App----------------------------------------------------------------------------
+let inputE=document.querySelector('input')
+let btnE=document.querySelector('button');
+let ulE=document.querySelector('ul');
+btnE.addEventListener('click',()=>{
+    let text=inputE.value;
+    let li=document.createElement('li');
+    li.innerText=text;
+    ulE.appendChild(li);
+    inputE.value='';
+    li.addEventListener('click',()=>{
+        li.remove();
+    })
+})
